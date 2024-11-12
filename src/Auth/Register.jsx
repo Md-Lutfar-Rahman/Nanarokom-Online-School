@@ -16,12 +16,15 @@ const Register = () => {
                 email,
                 password,
             });
-            alert('User registered successfully');
+
+            // Optional: You can display a message about the role if needed
+            alert('User registered successfully. Default role: student');
         } catch (error) {
             console.error('Error registering user:', error.response ? error.response.data : error.message);
             setError(error.response?.data?.error || 'Error registering user');
         }
     };
+
     return (
         <div className="max-w-md mx-auto p-4">
             <h1 className="text-2xl font-bold mb-4">Register</h1>
