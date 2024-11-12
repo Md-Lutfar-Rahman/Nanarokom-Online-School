@@ -25,6 +25,8 @@ function Navbar() {
           <Link to="/about" className="hover:text-gray-200">About</Link>
           <Link to="/services" className="hover:text-gray-200">Services</Link>
           <Link to="/contact" className="hover:text-gray-200">Contact</Link>
+          <Link to="/login" className="hover:text-gray-200">Login</Link>
+          <Link to="/register" className="hover:text-gray-200">Register</Link>
         </div>
 
         {/* Hamburger icon for mobile */}
@@ -44,6 +46,8 @@ function Navbar() {
           <Link to="/about" className="block hover:text-gray-200">About</Link>
           <Link to="/services" className="block hover:text-gray-200">Services</Link>
           <Link to="/contact" className="block hover:text-gray-200">Contact</Link>
+          <Link to="/login" className="hover:text-gray-200">Login</Link>
+          <Link to="/register" className="hover:text-gray-200">Register</Link>
         </div>
       )}
     </nav>
