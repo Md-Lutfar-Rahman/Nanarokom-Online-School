@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Register = () => {
     const [name, setName] = useState('');
@@ -7,18 +8,24 @@ const Register = () => {
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
 
+    const navigate = useNavigate(); // Initialize useNavigate hook
+
     const handleRegister = async (e) => {
         e.preventDefault();
-    
+
         try {
-            const response = await axios.post('http://localhost:5000/api/users', {
+            const response = await axios.post('http://localhost:5000/api/auth/register', {
                 name,
                 email,
                 password,
             });
 
-            // Optional: You can display a message about the role if needed
-            alert('User registered successfully. Default role: student');
+            if (response.status === 201) { // Assuming backend returns 201 for success
+                alert('User registered successfully. Default role: student');
+                navigate('/login'); // Navigate to login page
+            } else {
+                setError(response.data.message || 'Registration failed.');
+            }
         } catch (error) {
             console.error('Error registering user:', error.response ? error.response.data : error.message);
             setError(error.response?.data?.error || 'Error registering user');
@@ -66,7 +73,14 @@ const Register = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="w-full bg-blue-500 text-white py-2 rounded-md">Register</button>
+                <div className="flex justify-between">
+                    <button type="submit" className="w-[48%] bg-blue-500 text-white py-2 rounded-md">
+                        Register
+                    </button>
+                    <Link to="/login" className="w-[48%] bg-gray-500 text-white py-2 rounded-md text-center">
+                        Login
+                    </Link>
+                </div>
             </form>
         </div>
     );
